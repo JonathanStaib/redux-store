@@ -1,7 +1,7 @@
 const initialState = {
   categories: [
-    { name: 'Electronics'},
-    { name: 'Food'},
+    { name: 'Electronics', description: 'they do the thing'},
+    { name: 'Food', description: 'they tasty'},
     ],
 
   activeCategory: '',
@@ -26,6 +26,13 @@ const initialState = {
           ...state,
           activeCategory: action.payload
         }
+        case 'SET':
+          return{
+            ...state,
+            activeCategory: action.payload,
+            products: initialState.products.filter(product => product.category === action.payload)
+          }
+
       case 'RESET':
         return initialState;
       default:
@@ -37,6 +44,13 @@ const initialState = {
     return{
       type: 'CategoryChange',
       payload: activeCategory,
+    }
+  }
+
+  export const set = (category) => {
+    return {
+      type: 'SET',
+      payload: category,
     }
   }
 

@@ -1,46 +1,42 @@
-import { Card } from "@mantine/core"
-import { connect } from "react-redux"
+import { Card } from "@mantine/core";
+import { Button, ButtonGroup } from '@mui/material';
+import { Add } from "../../store/cart";
+import { useDispatch, useSelector } from "react-redux";
 
-const Products = ({categories, activeCategory, products, productName}) => {
-  if(activeCategory){
-    let displayCategory = categories.filter(products => products=== activeCategory)
-  }
+const Products = () => {
+
+  const {activeCategory, products} = useSelector((state) => state.category);
+
+  const dispatch = useDispatch();
 
   return(
     <>
-      <h2>{activeCategory}</h2>
+    {
+      activeCategory && <h2>{activeCategory}</h2>
+    }
+    <ButtonGroup variant="text">
       {
-        displayCategory.map((category, idx) =>(
-          <Card>
-            <h4>{productName}</h4>
+        activeCategory && products.map((product, idx) =>(
+          <Card key={`products-${idx}`}>
+            <h4>{product.name}</h4>
+            <p>{product.description}</p>
+            <Button onClick={() => dispatch(Add(product.name))}>ADD TO CART</Button>
+            <Button>VEIW DETAILS</Button>
           </Card>
 
         ))
       }
-
-
-      {/* category.map{() => {
-      <Card>
-      <img item.img/>
-      <h4> item.name <h4/>
-      <p> item.description <p/>
-      <Button onClick=addToCart > ADD TO CART <Button/>
-      <Button onClick= details > VEIW DETAILS <Button/>
-      <Card/>
-    }  */}
+    </ButtonGroup>
     </>
   )
 }
 
 
-const mapStateToProps = ({category}) => {
-  return{
-    categories: category.categories,
-    activeCateory: category.activeCateory,
-    product: category.products,
-    productCategory: category.products.category,
-    productName: category.products.name,
-  }
-}
+// const mapStateToProps = ({category}) => {
+//   return{
+//     activeCategory: category.activeCategory,
+//     product: category.products,
+//   }
+// }
 
-export default connect(mapStateToProps, null)(Products);
+export default Products;
