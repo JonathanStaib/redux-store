@@ -25,3 +25,4 @@ npm start
 
 - veiwing of electronics or food products
 - adding to cart feature
+ 
