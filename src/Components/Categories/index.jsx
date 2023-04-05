@@ -1,28 +1,23 @@
-import { Button } from "@mantine/core";
-import { categoryChange } from "../../store/categories";
-import { connect } from "react-redux";
+import { Button, ButtonGroup } from '@mui/material';
+import { set } from "../../store/categories/index";
+import { useSelector, useDispatch } from "react-redux";
 
-const Categories = ({categoryChange, categories}) => {
+const Categories = () => {
+
+  const {categories} = useSelector((state) => state.category);
+  const dispatch = useDispatch()
   return(
     <>
     <h4>Browse Our Categories</h4>
+    <ButtonGroup variant="text">
     {
       categories.map((category, idx) =>(
-        <Button onClick={() => categoryChange(category.name)}>{category.name}</Button>
+        <Button onClick={() => dispatch(set(category.name))}>{category.name}</Button>
       ))
     }
+    </ButtonGroup>
     </>
   )
 };
 
-const mapStateToProps = ({category}) => {
-  return{
-    categories: category.categories,
-  }
-}
-
-const mapDispatchToProps = {
-  categoryChange,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Categories);
+export default Categories;
