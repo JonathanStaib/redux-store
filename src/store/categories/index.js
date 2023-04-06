@@ -1,8 +1,5 @@
 const initialState = {
-  categories: [
-    { name: 'Electronics', description: 'they do the thing'},
-    { name: 'Food', description: 'they tasty'},
-    ],
+  categories: [],
 
   activeCategory: '',
 
@@ -21,20 +18,16 @@ const initialState = {
 
   function categoryReducer(state = initialState, action) {
     switch (action.type) {
-      case 'SET':
+      case 'SET-CATEGORY':
+        return {
+          ...state,
+          categories: action.payload,
+        };
+      case 'SELECT':
         return {
           ...state,
           activeCategory: action.payload
         }
-        // case 'SET':
-        //   return{
-        //     ...state,
-        //     activeCategory: action.payload,
-        //     products: initialState.products.filter(product => product.category === action.payload)
-        //   }
-
-      case 'RESET':
-        return initialState;
       default:
         return state
     }
@@ -47,17 +40,10 @@ const initialState = {
   //   }
   // }
 
-  export const set = (category) => {
+  export const select = (category) => {
     return {
-      type: 'SET',
+      type: 'SELECT',
       payload: category,
-    }
-  }
-
-  export const reset = () => {
-    return{
-      type: 'RESET',
-      payload: {},
     }
   }
   

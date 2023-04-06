@@ -3,7 +3,7 @@ import { composeWithDevTools } from "@redux-devtools/extension";
 import categoryReducer from "./categories/index";
 import cartReducer from "./cart";
 import productReducer from "./product";
-import logger from "./middleware/logger";
+import thunk from "./middleware/thunk";
 
 let reducers = combineReducers({
   category: categoryReducer,
@@ -12,7 +12,7 @@ let reducers = combineReducers({
 });
 
 const store = () => {
-  return createStore(reducers, composeWithDevTools(applyMiddleware(logger)))
+  return createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
 }
 
 export default store();
