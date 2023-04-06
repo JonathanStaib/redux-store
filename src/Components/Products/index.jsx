@@ -2,6 +2,7 @@ import { Card } from "@mantine/core";
 import { Button, ButtonGroup } from '@mui/material';
 import { Add } from "../../store/cart";
 import { useDispatch, useSelector } from "react-redux";
+import { adjustInventory } from "../../store/product";
 
 const Products = () => {
 
@@ -10,6 +11,11 @@ const Products = () => {
   console.log(products);
 
   const dispatch = useDispatch();
+
+  const addItemHandler = (product) => {
+    dispatch(Add(product));
+    dispatch(adjustInventory(product));
+  }
 
   return(
     <>
@@ -22,7 +28,7 @@ const Products = () => {
           <Card key={`products-${idx}`}>
             <h4>{product.name}</h4>
             <p>{product.description}</p>
-            <Button onClick={() => dispatch(Add(product))}>ADD TO CART</Button>
+            <Button onClick={() => addItemHandler(product)}>ADD TO CART</Button>
             <Button>VEIW DETAILS</Button>
           </Card>
 

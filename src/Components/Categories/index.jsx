@@ -1,13 +1,21 @@
 import { Button, ButtonGroup } from '@mui/material';
-import { set } from "../../store/product";
+import { get, select } from "../../store/product";
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from 'react';
 // import Cart from '../SimpleCart'
 // import { Grid } from '@mantine/core';
 
 const Categories = () => {
 
   const {categories} = useSelector((state) => state.category);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(get('categories'))
+
+    dispatch(get('products'))
+  }, []);
+
   return(
     <>
     {/* <Grid container p={3}>
@@ -16,7 +24,7 @@ const Categories = () => {
     <ButtonGroup variant="text">
     {
       categories.map((category, idx) =>(
-        <Button onClick={() => dispatch(set(category.name))}>{category.name}</Button>
+        <Button onClick={() => dispatch(select(category.name))}>{category.name}</Button>
       ))
     }
     </ButtonGroup>
