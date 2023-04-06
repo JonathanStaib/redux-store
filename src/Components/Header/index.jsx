@@ -1,4 +1,5 @@
 import { NavLink } from "@mantine/core";
+import { Grid, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 
 const Header = () => {
@@ -7,10 +8,16 @@ const Header = () => {
 
   return(
     <>
-    <h1>OUR STORE</h1>
+    <Grid container p={3}>
+      <Grid item xs>
+        <Typography variant="h4">OUR STORE</Typography>
 
-    <NavLink>CART ({state.length})</NavLink>
+      </Grid>
+      <Grid item xs style={{textAlign: 'right', alignSelf: 'center'}}>
+        <Typography >CART ({state.length})</Typography>
 
+      </Grid>
+    </Grid>
     </>
   )
 }

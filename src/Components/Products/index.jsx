@@ -5,7 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Products = () => {
 
-  const {activeCategory, products} = useSelector((state) => state.category);
+  const {activeCategory} = useSelector((state) => state.category);
+  const {products} = useSelector((state) => state);
+  console.log(products);
 
   const dispatch = useDispatch();
 
@@ -20,7 +22,7 @@ const Products = () => {
           <Card key={`products-${idx}`}>
             <h4>{product.name}</h4>
             <p>{product.description}</p>
-            <Button onClick={() => dispatch(Add(product.name))}>ADD TO CART</Button>
+            <Button onClick={() => dispatch(Add(product))}>ADD TO CART</Button>
             <Button>VEIW DETAILS</Button>
           </Card>
 
