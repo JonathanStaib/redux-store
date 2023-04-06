@@ -1,6 +1,8 @@
 import { Button, ButtonGroup } from '@mui/material';
-import { set } from "../../store/categories/index";
+import { set } from "../../store/product";
 import { useSelector, useDispatch } from "react-redux";
+// import Cart from '../SimpleCart'
+// import { Grid } from '@mantine/core';
 
 const Categories = () => {
 
@@ -8,6 +10,8 @@ const Categories = () => {
   const dispatch = useDispatch()
   return(
     <>
+    {/* <Grid container p={3}>
+      <Grid item xs> */}
     <h4>Browse Our Categories</h4>
     <ButtonGroup variant="text">
     {
@@ -16,6 +20,11 @@ const Categories = () => {
       ))
     }
     </ButtonGroup>
+      {/* </Grid> */}
+      {/* <Grid item xs> */}
+       {/* <Cart/> */}
+      {/* </Grid>
+      </Grid> */}
     </>
   )
 };
