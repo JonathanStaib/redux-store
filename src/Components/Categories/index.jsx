@@ -12,7 +12,6 @@ const Categories = () => {
 
   useEffect(() => {
     dispatch(get('categories'))
-
     dispatch(get('products'))
   }, []);
 

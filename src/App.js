@@ -1,17 +1,20 @@
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Header from './Components/Header';
 import Footers from './Components/Footer';
-import Categories from './Components/Categories';
-import Products from './Components/Products';
-import Cart from './Components/SimpleCart';
+import StoreFront from './Components/StoreFront';
+import ProductDetails from './Components/ProductDetails';
 
 function App() {
   return (
     <>
-    <Header/>
-    <Categories/>
-    <Products/>
-    <Cart/>
+    <BrowserRouter>
+      <Header/>
+      <Routes>
+        <Route path="/" element={<StoreFront />}/>
+        <Route path="/product/:id" element={<ProductDetails />}/>
+      </Routes>
     <Footers/>
+    </BrowserRouter>
     </>
   );
 }

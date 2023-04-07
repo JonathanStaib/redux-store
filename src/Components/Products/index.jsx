@@ -1,6 +1,7 @@
 import { Card } from "@mantine/core";
 import { Button, ButtonGroup } from '@mui/material';
 import { Add } from "../../store/cart";
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { adjustInventory } from "../../store/product";
 
@@ -29,7 +30,8 @@ const Products = () => {
             <h4>{product.name}</h4>
             <p>{product.description}</p>
             <Button onClick={() => addItemHandler(product)}>ADD TO CART</Button>
-            <Button>VEIW DETAILS</Button>
+            <Button component={Link} to={`product/${product._id}`}>VEIW DETAILS</Button>
+            {console.log(product._id)}
           </Card>
 
         ))
