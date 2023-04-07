@@ -1,4 +1,4 @@
-# LAB - Class 31, 32, 33 and 34
+# LAB - Class 36, 37, 38 and 39
 
 ## Project: Redux Store
 
